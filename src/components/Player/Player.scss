@@ -1,0 +1,16 @@
+button.button-xl {
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background-color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
