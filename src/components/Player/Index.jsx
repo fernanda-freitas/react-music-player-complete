@@ -95,7 +95,9 @@ const Player = () => {
       setLength(audio.duration);
     };
     const setAudioTime = () => {
-      setCurrTime(audio.currentTime)
+      const curTime = audio.currentTime
+      const curTimeRefactored = (curTime * 100).toFixed(1)
+      setCurrTime(curTimeRefactored)
     }
     audio.addEventListener("loadeddata", setAudioData);
     audio.addEventListener("timeupdate", setAudioTime)
