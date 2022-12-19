@@ -84,10 +84,21 @@ const Player = () => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [audio, setAudio] = useState(null)
   const [currTrack, setCurrTrack] = useState(0)
+  const [length, setLength] = useState('')
+  const [currTime, setCurrTime] = useState(null)
 
   useEffect(() => {
     const audio = new Audio(tracks[currTrack].source);
     setAudio(audio)
+
+    const setAudioData = () => {
+      setLength(audio.duration);
+    };
+    const setAudioTime = () => {
+      setCurrTime(audio.currentTime)
+    }
+    audio.addEventListener("loadeddata", setAudioData);
+    audio.addEventListener("timeupdate", setAudioTime)
 
     return () => {
       audio.pause()
@@ -150,6 +161,10 @@ const Player = () => {
       <div>
         <h4>{tracks[currTrack].name}</h4>
         <span>{tracks[currTrack].artist}</span>
+        <div className='duration'>
+          <p>{currTime}</p>
+          <p>{length}</p>
+        </div>
       </div>
       <div className='controllers'>
         <button className='button-md' onClick={playPrev}>
