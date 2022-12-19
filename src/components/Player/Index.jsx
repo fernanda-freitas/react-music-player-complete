@@ -33,10 +33,10 @@ const Player = () => {
 
   const [isPlaying, setIsPlaying] = useState(false)
   const [audio, setAudio] = useState(null)
-  const [audioIndex, setAudioIndex] = useState(0)
+  const [currentSongIndex, setcurrentSongIndex] = useState(0)
 
   useEffect(() => {
-    const audio = new Audio(tracks[audioIndex].source);
+    const audio = new Audio(tracks[currentSongIndex].source);
     setAudio(audio)
 
     return () => {
@@ -55,11 +55,18 @@ const Player = () => {
   }
 
   const playNext = () => {
-    const index = tracks.indexOf(audioIndex)
-    if (index !== tracks.length - 1) {
-      setAudioIndex(tracks[index + 1])
+    audio.pause()
+
+    if (currentSongIndex < tracks.length - 1) {
+      setcurrentSongIndex(currentSongIndex + 1)
+      const nextAudio = new Audio(tracks[currentSongIndex].source);
+      setAudio(nextAudio)
+      nextAudio.play()
     }  else {
-      setAudioIndex(tracks[0])
+      setcurrentSongIndex(0)
+      const nextAudio = new Audio(tracks[currentSongIndex].source);
+      setAudio(nextAudio)
+      nextAudio.play()
     }
   }
 
