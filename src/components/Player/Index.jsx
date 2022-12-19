@@ -141,7 +141,7 @@ const Player = () => {
   return (
     <div className='player'>
       <div className='album-cover'>
-        { currTrack >= tracks.length ? (
+        { tracks[currTrack].cover ? (
           <img src={tracks[currTrack].cover} alt="album cover" />
         ) : (
           <img src={tracks[0].cover} alt="album cover" />
