@@ -138,22 +138,30 @@ const Player = () => {
   }
 
   return (
-    <>
-      <img src={tracks[currentSongIndex].cover} alt="cover" />
-      <button onClick={playPrev}>Prev</button>
-      {
-        !isPlaying? (
-          <button className='button-xl' onClick={play}>
-            <img src={iconPlay} alt="play music" />
-          </button>
+    <div className='player'>
+      <div className='album-cover'>
+        { tracks[currentSongIndex].cover ? (
+          <img src={tracks[currentSongIndex].cover} alt="album cover" />
         ) : (
-          <button className='button-xl' onClick={pause}>
-            <img src={iconStop} alt="play music" />
-          </button>
-        )
-      }
-      <button onClick={playNext}>Next</button>
-    </>
+          <img src={tracks[0].cover} alt="album cover" />
+        )}
+      </div>
+      <div className='controllers'>
+        <button onClick={playPrev}>Prev</button>
+        {
+          !isPlaying? (
+            <button className='button-xl' onClick={play}>
+              <img src={iconPlay} alt="play music" />
+            </button>
+          ) : (
+            <button className='button-xl' onClick={pause}>
+              <img src={iconStop} alt="play music" />
+            </button>
+          )
+        }
+        <button onClick={playNext}>Next</button>
+      </div>
+    </div>
   )
 }
 
