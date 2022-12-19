@@ -147,6 +147,10 @@ const Player = () => {
           <img src={tracks[0].cover} alt="album cover" />
         )}
       </div>
+      <div>
+        <h4>{tracks[currTrack].name}</h4>
+        <span>{tracks[currTrack].artist}</span>
+      </div>
       <div className='controllers'>
         <button className='button-md' onClick={playPrev}>
           <img src={iconPrev} alt="prev music" />
