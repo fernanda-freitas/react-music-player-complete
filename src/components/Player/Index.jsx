@@ -83,10 +83,10 @@ const Player = () => {
 
   const [isPlaying, setIsPlaying] = useState(false)
   const [audio, setAudio] = useState(null)
-  const [currentSongIndex, setcurrentSongIndex] = useState(0)
+  const [currTrack, setCurrTrack] = useState(0)
 
   useEffect(() => {
-    const audio = new Audio(tracks[currentSongIndex].source);
+    const audio = new Audio(tracks[currTrack].source);
     setAudio(audio)
 
     return () => {
@@ -104,19 +104,18 @@ const Player = () => {
     audio.pause();
   }
 
-
   const playNext = () => {
     audio.pause()
     setIsPlaying(true)
 
-    if (currentSongIndex < tracks.length - 1) {
-      setcurrentSongIndex(currentSongIndex + 1)
-      const nextAudio = new Audio(tracks[currentSongIndex].source);
+    if (currTrack < tracks.length - 1) {
+      setCurrTrack(currTrack + 1)
+      const nextAudio = new Audio(tracks[currTrack].source);
       setAudio(nextAudio)
       nextAudio.play()
     }  else {
-      setcurrentSongIndex(0)
-      const nextAudio = new Audio(tracks[currentSongIndex].source);
+      setCurrTrack(0)
+      const nextAudio = new Audio(tracks[currTrack].source);
       setAudio(nextAudio)
       nextAudio.play()
     }
@@ -126,14 +125,14 @@ const Player = () => {
     audio.pause()
     setIsPlaying(true)
 
-    if (currentSongIndex >= 0) {
-      setcurrentSongIndex(currentSongIndex - 1)
-      const prevAudio = new Audio(tracks[currentSongIndex].source);
+    if (currTrack >= 0) {
+      setCurrTrack(currTrack - 1)
+      const prevAudio = new Audio(tracks[currTrack].source);
       setAudio(prevAudio)
       prevAudio.play()
     } else {
-      setcurrentSongIndex(0)
-      const prevAudio = Audio(tracks[currentSongIndex].source)
+      setCurrTrack(0)
+      const prevAudio = Audio(tracks[currTrack].source)
       setAudio(prevAudio)
       prevAudio.play()
     }
@@ -142,8 +141,8 @@ const Player = () => {
   return (
     <div className='player'>
       <div className='album-cover'>
-        { tracks[currentSongIndex].cover ? (
-          <img src={tracks[currentSongIndex].cover} alt="album cover" />
+        { tracks[currTrack].cover ? (
+          <img src={tracks[currTrack].cover} alt="album cover" />
         ) : (
           <img src={tracks[0].cover} alt="album cover" />
         )}
