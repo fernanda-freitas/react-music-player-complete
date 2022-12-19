@@ -2,6 +2,8 @@ import './Player.scss'
 import {useEffect, useState} from 'react'
 import iconPlay from '../../images/icon-play.svg'
 import iconStop from '../../images/icon-stop.svg'
+import iconNext from '../../images/icon-next.svg'
+import iconPrev from '../../images/icon-prev.svg'
 
 const Player = () => {
   const tracks = [
@@ -147,7 +149,9 @@ const Player = () => {
         )}
       </div>
       <div className='controllers'>
-        <button onClick={playPrev}>Prev</button>
+        <button className='button-md' onClick={playPrev}>
+          <img src={iconPrev} alt="prev music" />
+        </button>
         {
           !isPlaying? (
             <button className='button-xl' onClick={play}>
@@ -159,7 +163,9 @@ const Player = () => {
             </button>
           )
         }
-        <button onClick={playNext}>Next</button>
+        <button className='button-md' onClick={playNext}>
+          <img src={iconNext} alt="next music" />
+        </button>
       </div>
     </div>
   )
